@@ -1,10 +1,14 @@
 import { FaFacebookSquare, FaGhost, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { footerLinks } from "../Data/Data";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
 
-    return (
+	const location = useLocation();
+
+
+    return location.pathname!="/signup" && location.pathname!="/login" ?
 
         <div className="pt-20 pb-5 flex gap-5 justify-around bg-congress-blue-950 font-['poppins']">
 
@@ -46,8 +50,8 @@ const Footer = () => {
                 )
             }
 
-        </div>
-    )
+        </div> : <></>
+    
 
 }
 

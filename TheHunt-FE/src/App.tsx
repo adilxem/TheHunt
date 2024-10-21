@@ -2,6 +2,7 @@ import { createTheme, MantineProvider } from '@mantine/core'
 import './App.css'
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
+import '@mantine/dates/styles.css';
 import '@mantine/tiptap/styles.css';
 import HomePage from './Pages/HomePage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -13,6 +14,11 @@ import TalentProfilePage from './Pages/TalentProfilePage';
 import PostJobPage from './Pages/PostJobPage';
 import JobDescPage from './Pages/JobDescPage';
 import ApplyJobPage from './Pages/ApplyJobPage';
+import CompanyPage from './Pages/CompanyPage';
+import PostedJobPage from './Pages/PostedJobPage';
+import JobHistoryPage from './Pages/JobHistoryPage';
+import SignUpPage from './Pages/SignUpPage';
+import ProfilePage from './Pages/ProfilePage';
 
 function App() {
 
@@ -52,8 +58,14 @@ function App() {
 							<Route path='/find-talent' element={<FindTalentPage />} />
 							<Route path='/jobs' element={<JobDescPage />} />
 							<Route path='/apply-job' element={<ApplyJobPage />} />
+							<Route path='/company' element={<CompanyPage />} />
+							<Route path='/posted-job' element={<PostedJobPage />} />
+							<Route path='/job-history' element={<JobHistoryPage />} />
 							<Route path='/talent-profile' element={<TalentProfilePage />} />
 							<Route path='/post-job' element={<PostJobPage />} />
+							<Route path='/signup' element={<SignUpPage />} />
+							<Route path='/login' element={<SignUpPage />} />
+							<Route path='/profile' element={<ProfilePage />} />
 							<Route path='*' element={<HomePage />} />
 
 						</Routes>

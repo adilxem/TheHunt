@@ -1,15 +1,19 @@
-import { Avatar, Indicator } from "@mantine/core";
+import { Indicator } from "@mantine/core";
 import { FaGhost } from "react-icons/fa";
 import { IoNotifications, IoSettingsSharp } from "react-icons/io5";
 import NavLinks from "./NavLinks";
+import { useLocation } from "react-router-dom";
+import ProfileMenu from "./ProfileMenu";
 
 
 
 const Header = () => {
 
-    return <div className="w-full bg-congress-blue-950 h-20 text-white flex justify-between items-center px-5 font-['poppins']">
+	const location = useLocation();
 
-        <div className="flex gap-2 items-center text-bright-sun-300">
+    return location.pathname!="/signup" && location.pathname!="/login" ? <div className="w-full bg-congress-blue-950 h-20 text-white flex justify-between items-center px-5 font-['poppins']">
+
+        <div className="flex gap-2 items-center text-bright-sun-400 ">
             
             <FaGhost className="h-8 w-8"/>
 
@@ -19,13 +23,8 @@ const Header = () => {
         {NavLinks()}
 
         <div className="flex gap-4 justify-center items-center">
-            
-            <div className="flex gap-2 items-center justify-center">
-                <div>
-                    {/* User */}
-                </div>
-                <Avatar src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-5.png" alt="it's me" color="orange" />
-            </div>
+
+			<ProfileMenu/>
             
             <div className="bg-congress-blue-900 p-1.5 rounded-full">
 
@@ -43,7 +42,7 @@ const Header = () => {
 
         </div>
 
-    </div>
+    </div> : <></>
 
 }
 

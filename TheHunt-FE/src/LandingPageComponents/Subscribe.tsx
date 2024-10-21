@@ -10,12 +10,12 @@ const Subscribe = () => {
 
             <div className="flex gap-4 rounded-xl bg-congress-blue-700 px-3 py-2 items-center">
             <TextInput
-                className="[&_input]:text-congress-blue-100 font-semibold"
+                className="[&_input]:text-congress-blue-100 font-semibold [&_input]:placeholder-congress-blue-300"
                 variant="unstyled"
                 placeholder="your@email.com"
                 size="xl"
             />
-            <Button className="!rounded-lg" size="lg" color="bright-sun.4" variant="filled">Subscribe</Button>
+            <Button className="!rounded-lg text-congress-blue-700" size="lg" color="bright-sun.4" variant="filled">Sign Up</Button>
             </div>
         </div>
     )

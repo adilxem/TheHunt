@@ -1,4 +1,4 @@
-package com.adil.TheHuntBE;
+package com.adil.TheHunt_BE;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

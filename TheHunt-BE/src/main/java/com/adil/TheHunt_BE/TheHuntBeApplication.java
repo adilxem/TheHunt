@@ -1,4 +1,4 @@
-package com.adil.TheHuntBE;
+package com.adil.TheHunt_BE;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

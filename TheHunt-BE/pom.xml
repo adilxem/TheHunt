@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.adil</groupId>
-	<artifactId>TheHuntBE</artifactId>
+	<artifactId>TheHunt-BE</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>TheHuntBE</name>
+	<name>TheHunt-BE</name>
 	<description>backend for TheHunt</description>
 	<url/>
 	<licenses>

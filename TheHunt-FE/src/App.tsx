@@ -1,9 +1,11 @@
 import { createTheme, MantineProvider } from '@mantine/core'
+import { Notifications } from '@mantine/notifications';
 import './App.css'
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/tiptap/styles.css';
+import '@mantine/notifications/styles.css';
 import HomePage from './Pages/HomePage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import FindJobs from './Pages/FindJobs';
@@ -43,6 +45,10 @@ function App() {
 		<>
 
 			<MantineProvider defaultColorScheme='dark' theme={theme}>
+
+				<Notifications 
+				className='[&>div>div]:bg-congress-blue-900 [&_div]:rounded-lg'
+				position="top-right" zIndex={1000}/>
 
 				<BrowserRouter>
 

@@ -116,7 +116,7 @@ const TalentCard = (props: any) => {
 
 			</div>
 
-			<Modal className='[&_content]:bg-congress-blue-700' opened={opened} onClose={close} title="Schedule Interview" centered>
+			<Modal className='[&_section]:bg-congress-blue-900 [&_header]:bg-congress-blue-900 [&_header>button]:hover:bg-congress-blue-900 [&_input]:bg-congress-blue-950 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-800' opened={opened} onClose={close} title="Schedule Interview" centered>
 
 				<div className='flex flex-col gap-4'>
 					<DateInput 

@@ -1,8 +1,8 @@
 import { Button, Divider } from "@mantine/core";
 import { FaAngleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Company from "../CompanyProfile/Company";
-import SimilarCompanies from "../CompanyProfile/SimilarCompanies";
+import Company from "../Components/CompanyProfile/Company";
+import SimilarCompanies from "../Components/CompanyProfile/SimilarCompanies";
 
 const CompanyPage = () => {
 

@@ -6,11 +6,22 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { FiSun } from 'react-icons/fi';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeUser } from '../../Slices/UserSlice';
 
 const ProfileMenu = () => {
 
+	const dispatch = useDispatch();
+
+	const user = useSelector((state : any) => state.user);
+
 	const [checked, setChecked] = useState(false);
 	const [opened, setOpened] = useState(false);
+
+	const handleLogout = () => {
+
+		dispatch(removeUser());
+	}
 
 	return (
 		<div>
@@ -21,7 +32,7 @@ const ProfileMenu = () => {
 				<Menu.Target>
 					<div className="flex gap-2 items-center justify-center cursor-pointer">
 						<div>
-							{/* User */}
+							{user.name}
 						</div>
 						<Avatar src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-5.png" alt="it's me" color="orange" />
 					</div>
@@ -61,6 +72,8 @@ const ProfileMenu = () => {
 					<Divider size="xs" className='m-2' color="congress-blue.7" />
 
 					<Menu.Item className='hover:bg-congress-blue-950'
+
+						onClick={handleLogout}
 						color="red"
 						leftSection={<TbLogout2 style={{ width: rem(14), height: rem(14) }} />}
 					>

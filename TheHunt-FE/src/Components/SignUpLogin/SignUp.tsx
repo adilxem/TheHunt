@@ -5,7 +5,7 @@ import { IoAt } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../Services/UserService";
 import { signupValidation } from "../../Services/FormValidation";
-import { notifications } from "@mantine/notifications";
+import { errorNotification, successNotification } from "../../Services/NotificationService";
 
 const form = {
 
@@ -23,6 +23,8 @@ const SignUp = () => {
 	const [formError, setFormError] = useState<{ [key: string]: string }>(form);
 
 	const navigate = useNavigate();
+
+	const [loading, setLoading] = useState(false);
 
 	const handleChange = (event: any) => {
 
@@ -76,21 +78,19 @@ const SignUp = () => {
 
 		if (valid === true) {
 
+			setLoading(true);
+
 			registerUser(data).then((res) => {
 
 				console.log(res);
 
 				setData(form);
 
-				notifications.show({
-					title: 'Registered Successfully',
-					message: 'Redirecting to login page...',
-					withCloseButton: true,
-					withBorder: true,
-					className: "!border-blue-500 mb-5"
-				})
+				successNotification("Registered Successfully", "Redirecting to login page...")
 
 				setTimeout(() => {
+
+					setLoading(false);
 
 					navigate("/login");
 					
@@ -98,15 +98,11 @@ const SignUp = () => {
 
 			}).catch((err) => {
 
+				setLoading(false);
+
 				console.log(err.response.data);
 
-				notifications.show({
-					title: 'Registration Failed',
-					message: err.response.data.errorMessage,
-					withCloseButton: true,
-					withBorder: true,
-					className: "!border-red-500 mb-5"
-				})
+				errorNotification("Registration Failed", err.response.data.errorMessage);
 
 			});
 		}
@@ -188,7 +184,7 @@ const SignUp = () => {
 				label={<>I accept {' '} <Anchor>terms & conditions.</Anchor> </>}
 			/>
 
-			<Button onClick={handleSubmit} autoContrast variant="filled">Sign Up</Button>
+			<Button loading={loading} onClick={handleSubmit} autoContrast variant="filled">Sign Up</Button>
 
 			<div className="mx-auto">Have an account? <span onClick={() => {navigate("/login"); setFormError(form); setData(form)}} className="text-bright-sun-400 hover:underline cursor-pointer">Login.</span></div>
 

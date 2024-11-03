@@ -18,7 +18,7 @@ const DreamJob = () => {
 
                     <TextInput
 
-                        className="bg-congress-blue-900 rounded-lg p-1 px-2 text-congress-blue-100 [&_input]:!text-congress-blue-100"
+                        className="bg-congress-blue-900 text-lg rounded-lg p-1 px-2 text-congress-blue-100 [&_input]:!text-congress-blue-100 [&_input]:!placeholder-congress-blue-400"
 
                         variant="unstyled"
                         label="Job Title"
@@ -27,7 +27,7 @@ const DreamJob = () => {
 
                     <TextInput
 
-                        className="bg-congress-blue-900 rounded-lg p-1 px-2 text-congress-blue-100 [&_input]:!text-congress-blue-100"
+                        className="bg-congress-blue-900 text-lg rounded-lg p-1 px-2 text-congress-blue-100 [&_input]:!text-congress-blue-100 [&_input]:!placeholder-congress-blue-400"
 
                         variant="unstyled"
                         label="Job Type"

@@ -1,13 +1,16 @@
-import { Indicator } from "@mantine/core";
+import { Button, Indicator } from "@mantine/core";
 import { FaGhost } from "react-icons/fa";
 import { IoNotifications, IoSettingsSharp } from "react-icons/io5";
 import NavLinks from "./NavLinks";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ProfileMenu from "./ProfileMenu";
+import { useSelector } from "react-redux";
 
 
 
 const Header = () => {
+
+	const user = useSelector((state : any) => state.user);
 
 	const location = useLocation();
 
@@ -24,7 +27,9 @@ const Header = () => {
 
         <div className="flex gap-4 justify-center items-center">
 
-			<ProfileMenu/>
+			{user ? <ProfileMenu/> : <Link to="/login">
+			<Button variant="subtle" color="bright-sun.4">Login</Button>
+			</Link>}
             
             <div className="bg-congress-blue-900 p-1.5 rounded-full">
 
@@ -35,10 +40,10 @@ const Header = () => {
                 </Indicator>
             </div>
 
-            <div className="bg-congress-blue-900 p-1.5 rounded-full">
+            {/* <div className="bg-congress-blue-900 p-1.5 rounded-full">
 
                 <IoSettingsSharp className="h-6 w-6"/>
-            </div>
+            </div> */}
 
         </div>
 

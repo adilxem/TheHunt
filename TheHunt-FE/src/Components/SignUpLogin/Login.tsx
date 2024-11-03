@@ -8,14 +8,20 @@ import { loginValidation } from "../../Services/FormValidation";
 import { notifications } from "@mantine/notifications";
 import { useDisclosure } from "@mantine/hooks";
 import ResetPassword from "./ResetPassword";
-
-const form = {
-
-	email: "",
-	password: ""
-}
+import { useDispatch } from "react-redux";
+import { setUser } from "../../Slices/UserSlice";
 
 const Login = () => {
+
+	const [loading, setLoading] = useState(false);
+
+	const dispatch = useDispatch();
+	
+	const form = {
+	
+		email: "",
+		password: ""
+	}
 
 	const [data, setData] = useState<{ [key: string]: string }>(form);
 
@@ -47,6 +53,8 @@ const Login = () => {
 
 		if (valid) {
 
+			setLoading(true);
+
 			loginUser(data).then((res) => {
 
 				console.log(res);
@@ -62,12 +70,18 @@ const Login = () => {
 
 				setTimeout(() => {
 
+					setLoading(false);
+
+					dispatch(setUser(res));
+
 					navigate("/");
 
-				}, 2000);
+				}, 1000);
 
 
 			}).catch((err) => {
+
+				setLoading(false);
 
 				console.log(err.response.data);
 
@@ -116,7 +130,7 @@ const Login = () => {
 				placeholder="Password"
 			/>
 
-			<Button onClick={handleSubmit} autoContrast variant="filled">Login</Button>
+			<Button loading={loading} onClick={handleSubmit} autoContrast variant="filled">Login</Button>
 
 			<div className="mx-auto">Don't have an account? <span onClick={() => { navigate("/signup"); setFormError(form); setData(form) }} className="text-bright-sun-400 hover:underline cursor-pointer">Signup.</span></div>
 

@@ -1,4 +1,4 @@
-import { Anchor, Button, Checkbox, Group, PasswordInput, Radio, TextInput } from "@mantine/core";
+import { Button, Group, PasswordInput, Radio, TextInput } from "@mantine/core";
 import { useState } from "react";
 import { IoMdLock } from "react-icons/io";
 import { IoAt } from "react-icons/io5";
@@ -179,10 +179,10 @@ const SignUp = () => {
 
 			</Radio.Group>
 
-			<Checkbox autoContrast className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800"
+			{/* <Checkbox autoContrast className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800"
 
 				label={<>I accept {' '} <Anchor>terms & conditions.</Anchor> </>}
-			/>
+			/> */}
 
 			<Button loading={loading} onClick={handleSubmit} autoContrast variant="filled">Sign Up</Button>
 

@@ -16,7 +16,7 @@ const JobCategory = () => {
 
             <Carousel slideSize="22%" slideGap="md" loop className="focus-visible:[&_button]:!outline-none [&_button]:bg-bright-sun-400 [&_button]:border-none [&_button]:hover:opacity-75 [&_button]:opacity-0 hover:[&_button]:opacity-100 ">
                 {
-                    jobCategory.map((category) => <Carousel.Slide>
+                    jobCategory.map((category, index) => <Carousel.Slide key={index}>
 
                         <div className="flex flex-col items-center w-64 gap-2 border border-bright-sun-400 p-5 rounded-xl hover:cursor-pointer hover:shadow-[0_0_5px_2px_black] my-5 transition duration-300 ease-in-out !shadow-bright-sun-300">
 

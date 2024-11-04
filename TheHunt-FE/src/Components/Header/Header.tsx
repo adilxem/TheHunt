@@ -1,6 +1,6 @@
 import { Button, Indicator } from "@mantine/core";
 import { FaGhost } from "react-icons/fa";
-import { IoNotifications, IoSettingsSharp } from "react-icons/io5";
+import { IoNotifications } from "react-icons/io5";
 import NavLinks from "./NavLinks";
 import { Link, useLocation } from "react-router-dom";
 import ProfileMenu from "./ProfileMenu";

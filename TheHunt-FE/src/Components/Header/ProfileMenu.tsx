@@ -21,6 +21,8 @@ const ProfileMenu = () => {
 	const handleLogout = () => {
 
 		dispatch(removeUser());
+
+		// on logout, you can use navigate to send the user back to either the login page or the home page
 	}
 
 	return (

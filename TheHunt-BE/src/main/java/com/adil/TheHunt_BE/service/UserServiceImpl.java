@@ -37,12 +37,17 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private JavaMailSender mailSender;
 
+    @Autowired
+    private ProfileService profileService;
+
     @Override
     public UserDTO registerUser(UserDTO userDTO) throws TheHuntException {
 
         Optional<User> optional = userRepository.findByEmail(userDTO.getEmail());
 
         if (optional.isPresent()) throw new TheHuntException("USER_FOUND");
+
+        userDTO.setProfileId(profileService.createProfile(userDTO.getEmail()));
 
         userDTO.setId(Utilities.getNextSequence("users"));
 

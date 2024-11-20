@@ -75,17 +75,17 @@ const Jobs = () => {
 				filter.location && filter.Location?.some((x: any) => job.location.toLowerCase().includes(x.toLowerCase())));
 		}
 
-		if (filter.Experience && filter.Experience.length > 0) {
-
-			filtered = filtered.filter((job: any) =>
-				filter.Experience?.some((x: any) => job.experience?.toLowerCase().includes(x.toLowerCase())));
-		}
-
 		// if (filter.Qualification && filter.Qualification.length > 0) {
 
 		// 	filtered = filtered.filter((job: any) =>
 		// 		filter.Qualification?.some((x: any) => job.qualification?.toLowerCase().includes(x.toLowerCase())));
 		// }
+
+		if (filter.Experience && filter.Experience.length > 0) {
+
+			filtered = filtered.filter((job: any) =>
+				filter.Experience?.some((x: any) => job.experience?.toLowerCase().includes(x.toLowerCase())));
+		}
 
 		if (filter["Job Type"] && filter["Job Type"].length > 0) {
 

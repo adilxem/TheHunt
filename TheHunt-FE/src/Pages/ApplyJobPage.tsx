@@ -1,9 +1,30 @@
 import { Button, Divider } from "@mantine/core";
 import { FaAngleLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ApplyJobComp from "../Components/ApplyJob/ApplyJobComp";
+import { useEffect, useState } from "react";
+import { getJob } from "../Services/JobService";
 
 const ApplyJobPage = () => {
+
+	const navigate = useNavigate();
+
+	const {id} = useParams();
+
+	const [job, setJob] = useState<any>(null);
+
+	useEffect(() => {
+
+		window.scrollTo(0, 0);
+		getJob(id).then((res) => {
+
+			setJob(res);
+		}).catch((err) => {
+
+			console.log(err);
+			
+		})
+	}, [id]);
 
 	return (
 
@@ -11,13 +32,13 @@ const ApplyJobPage = () => {
 
 			<Divider size="xs" mx="md" color="congress-blue.9" />
 
-			<Link className="m-4 inline-block" to="/jobs">
+			<div className="m-4 inline-block">
 
-				<Button leftSection={<FaAngleLeft size={20} />} color="bright-sun.4" variant="light" >Back</Button>
+				<Button onClick={() => navigate(-1)} leftSection={<FaAngleLeft size={20} />} color="bright-sun.4" variant="light" >Back</Button>
 
-			</Link>
+			</div>
 
-			<ApplyJobComp/>
+			<ApplyJobComp {...job}/>
 
 		</div>
 	)

@@ -1,12 +1,12 @@
 import { Button } from "@mantine/core";
 import { useState } from "react";
-import ExpInput from "./ExpInput";
 import { formatDate } from "../../Services/Utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { changeProfile } from "../../Slices/ProfileSlice";
 import { successNotification } from "../../Services/NotificationService";
+import EduInput from "./EduInput";
 
-const ExpCard = (props: any) => {
+const EduCard = (props: any) => {
 
 	const [edit, setEdit] = useState(false);
 
@@ -16,15 +16,15 @@ const ExpCard = (props: any) => {
 
 	const handleDelete = () => {
 
-		let exp = [...profile.experiences];
+		let edu = [...profile.educations];
 
-		exp.splice(props.index, 1);
+		edu.splice(props.index, 1);
 
-		let updatedProfile = {...profile, experiences : exp}
+		let updatedProfile = {...profile, educations : edu}
 
 		dispatch(changeProfile(updatedProfile));
 
-		successNotification("Success", "Experience Deleted Successfully");
+		successNotification("Success", "Education Deleted Successfully");
 
 		console.log(updatedProfile);
 		
@@ -43,21 +43,21 @@ const ExpCard = (props: any) => {
 					</div> */}
 					<div>
 
-						<div className="font-semibold">{props.title}</div>
-						<div className="text-sm text-congress-blue-300">{props.company} &#x2022; {props.location}</div>
+						<div className="font-semibold">{props.course}</div>
+						<div className="text-sm text-congress-blue-300">{props.institution} &#x2022; {props.location}</div>
 
 					</div>
 				</div>
 
 				<div className="text-sm text-congress-blue-300">
-					{formatDate(props.startDate)} - {props.working ? "Present" : formatDate(props.endDate)}
+					{formatDate(props.startDate)} - {props.currentlyStudying ? "Present" : formatDate(props.endDate)}
 				</div>
 
 			</div>
 
-			<div className="text-sm text-congress-blue-300 text-justify">
+			{/* <div className="text-sm text-congress-blue-300 text-justify">
 				{props.description}
-			</div>
+			</div> */}
 
 			{props.edit && <div className="flex gap-5">
 				<Button onClick={()=> setEdit(true)} color="bright-sun.4" variant="outline" >Edit</Button>
@@ -65,6 +65,6 @@ const ExpCard = (props: any) => {
 			</div>}
 
 		</div>
-	</div> : <ExpInput {...props} setEdit={setEdit}/>
+	</div> : <EduInput {...props} setEdit={setEdit}/>
 }
-export default ExpCard;
+export default EduCard;

@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService{
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
         helper.setTo(email);
-        helper.setSubject("OTP for reset password");
+        helper.setSubject("Reset Your Password");
 
         String genOTP = Utilities.generateOTP();
 

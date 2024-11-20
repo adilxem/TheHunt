@@ -5,9 +5,10 @@ import { PiMoonStarsBold, PiReadCvLogoBold } from "react-icons/pi";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { FiSun } from 'react-icons/fi';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../../Slices/UserSlice';
+import { successNotification } from '../../Services/NotificationService';
 
 const ProfileMenu = () => {
 
@@ -15,14 +16,22 @@ const ProfileMenu = () => {
 
 	const user = useSelector((state : any) => state.user);
 
+	const profile = useSelector((state: any) => state.profile);
+
 	const [checked, setChecked] = useState(false);
 	const [opened, setOpened] = useState(false);
+
+	const navigate = useNavigate();
 
 	const handleLogout = () => {
 
 		dispatch(removeUser());
 
 		// on logout, you can use navigate to send the user back to either the login page or the home page
+
+		navigate("/");
+
+		successNotification ("User Logged Out", "You have been logged out successfully");
 	}
 
 	return (
@@ -36,7 +45,18 @@ const ProfileMenu = () => {
 						<div>
 							{user.name}
 						</div>
-						<Avatar src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-5.png" alt="it's me" color="orange" />
+
+						{/* <Avatar src={profile.picture ? `data : image/jpeg; base64, ${profile.picture}` : "/Avatars/avatar1.png"} alt="it's me" color="orange" /> */}
+
+						<Avatar
+						// className="!h-48 !w-48 border-congress-blue-950 border-8 rounded-full"
+						src={profile.picture ? `data:image/jpeg;base64,${profile.picture}` : "/Avatars/avatar1.png"}
+						alt="user"
+						onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+							const target = e.target as HTMLImageElement;
+							target.src = "/Avatars/avatar1.png"; 
+						}}
+					/>
 					</div>
 				</Menu.Target>
 
@@ -80,6 +100,7 @@ const ProfileMenu = () => {
 						leftSection={<TbLogout2 style={{ width: rem(14), height: rem(14) }} />}
 					>
 						Logout
+
 					</Menu.Item>
 				</Menu.Dropdown>
 			</Menu>

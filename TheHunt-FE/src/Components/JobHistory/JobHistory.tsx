@@ -1,8 +1,79 @@
 import { Tabs } from "@mantine/core";
-import { jobList } from "../../Data/JobsData";
 import Card from "./Card";
+import { useEffect, useState } from "react";
+import { getAllJobs } from "../../Services/JobService";
+import { useSelector } from "react-redux";
 
 const JobHistory = () => {
+
+	const profile = useSelector((state: any) => state.profile);
+
+	const user = useSelector((state: any) => state.user);
+
+	const [activeTab, setActiveTab] = useState<any>('APPLIED');
+
+	const [jobList, setJobList] = useState<any>([]);
+
+	const [showList, setShowList] = useState<any>([]);
+
+	useEffect(() => {
+
+		getAllJobs().then((res) => {
+
+			setJobList(res);
+
+			setShowList(res.filter((job : any) => {
+
+				let found = false;
+
+				job.applicants?.forEach((applicant : any) => {
+
+					if (applicant.applicantId == user.id && applicant.applicationStatus == "APPLIED") {
+
+						found = true;
+					}
+				})
+
+				return found;
+			}));
+
+		}).catch((err) => {
+
+			console.log(err);
+			
+		})
+	}, []);
+
+	
+	const handleTabChange = (value : string | null) => {
+
+		setActiveTab(value);
+
+		if (value === "SAVED") {
+
+			setShowList(jobList.filter((job: any) => profile.savedJobs?.includes(job.id)));
+		}
+
+		else {
+
+			setShowList(jobList.filter((job : any) => {
+
+				let found = false;
+
+				job.applicants?.forEach((applicant : any) => {
+
+					if (applicant.applicantId == user.id && applicant.applicationStatus == value) {
+
+						found = true;
+					}
+				})
+
+				return found;
+			}));
+				
+		
+		}
+	}
 
 	return (
 
@@ -12,57 +83,25 @@ const JobHistory = () => {
 
 			<div>
 
-				<Tabs color="bright-sun.4" defaultValue="applied" variant="pills" radius="lg">
+				<Tabs value={activeTab} onChange={handleTabChange} autoContrast color="bright-sun.4" variant="pills" radius="lg">
 					<Tabs.List className="[&_button]:!text-lg [&_button]:text-white   [&_button:hover]:bg-congress-blue-900 font-semibold mb-5">
-						<Tabs.Tab value="applied">Applied</Tabs.Tab>
-						<Tabs.Tab value="saved">Saved</Tabs.Tab>
-						<Tabs.Tab value="offered">Offered</Tabs.Tab>
-						<Tabs.Tab value="interviewing">Interviewing</Tabs.Tab>
+						<Tabs.Tab value="APPLIED">Applied</Tabs.Tab>
+						<Tabs.Tab value="SAVED">Saved</Tabs.Tab>
+						<Tabs.Tab value="OFFERED">Offered</Tabs.Tab>
+						<Tabs.Tab value="INTERVIEWING">Interviewing</Tabs.Tab>
 					</Tabs.List>
 
-					<Tabs.Panel value="applied">
+					<Tabs.Panel value={activeTab} className="[&>div]:w-full">
 
-						<div className="mt-10 flex flex-wrap gap-5 justify-center">
+						<div className="mt-10 flex flex-wrap gap-5 justify-start">
 
 							{
-								jobList.map((job, index) => <Card key={index} {...job} applied />)
+								showList.map((job : any, index : any) => <Card key={index} {...job} {...{[activeTab.toLowerCase()]: true}} />)
 							}
 
 						</div>
 					</Tabs.Panel>
 
-					<Tabs.Panel value="saved">
-
-						<div className="mt-10 flex flex-wrap gap-5 justify-center">
-
-							{
-								jobList.map((job, index) => <Card key={index} {...job} saved />)
-							}
-
-						</div>
-					</Tabs.Panel>
-
-					<Tabs.Panel value="offered">
-
-						<div className="mt-10 flex flex-wrap gap-5 justify-center">
-
-							{
-								jobList.map((job, index) => <Card key={index} {...job} offered />)
-							}
-
-						</div>
-					</Tabs.Panel>
-
-					<Tabs.Panel value="interviewing">
-
-						<div className="mt-10 flex flex-wrap gap-5 justify-center">
-
-							{
-								jobList.map((job, index) => <Card key={index} {...job} interviewing />)
-							}
-
-						</div>
-					</Tabs.Panel>
 				</Tabs>
 
 			</div>

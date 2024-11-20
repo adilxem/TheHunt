@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @Validated
@@ -23,6 +25,13 @@ public class ProfileAPI {
 
         return new ResponseEntity<>(profileService.getProfile(id), HttpStatus.OK);
     }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<ProfileDTO>> getAllProfiles () throws TheHuntException {
+
+        return new ResponseEntity<>(profileService.getAllProfiles(), HttpStatus.OK);
+    }
+
     @PutMapping("/update")
     public ResponseEntity<ProfileDTO> updateProfile (@RequestBody ProfileDTO profileDTO) throws TheHuntException {
 

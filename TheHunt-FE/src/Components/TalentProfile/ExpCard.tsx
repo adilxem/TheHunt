@@ -1,3 +1,5 @@
+import { formatDate } from "../../Services/Utilities";
+
 const ExpCard = (props:any) => {
 
 	return (
@@ -20,7 +22,7 @@ const ExpCard = (props:any) => {
 				</div>
 				
 				<div className="text-sm text-congress-blue-300">
-				{props.startDate} - {props.endDate}
+				{ formatDate(props.startDate)} - {formatDate(props.endDate)}
 				</div>
 
 			</div>

@@ -1,7 +1,15 @@
 import { FaBriefcase, FaMapMarkerAlt, FaBolt, FaSearch } from 'react-icons/fa';
 
 const dropdownData = [
-    { title: "Job Title", icon: FaSearch, options: ['Designer', 'Developer', 'Product Manager', 'Marketing Specialist', 'Data Analyst', 'Sales Executive', 'Content Writer', 'Customer Support'] },
+    { title: "Job Title", icon: FaSearch, options: [
+		'Tutor',
+		'Retail Assistant',
+		'Freelance Writer',
+		'Delivery Driver',
+		'Social Media Manager',
+		'Research Assistant',
+		'Waiter/Waitress',
+		'Data Entry Clerk'] },
     { title: "Location", icon: FaMapMarkerAlt, options: ['Delhi', 'New York', 'San Francisco', 'London', 'Berlin', 'Tokyo', 'Sydney', 'Toronto'] },
     { title: "Experience", icon: FaBriefcase, options: ['Entry Level', 'Intermediate', 'Expert'] },
     { title: "Job Type", icon: FaBolt, options: ['Full Time', 'Part Time', 'Contract', 'Freelance', 'Internship'] }

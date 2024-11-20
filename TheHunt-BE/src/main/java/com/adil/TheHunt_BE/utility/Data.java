@@ -27,9 +27,9 @@ public class Data {
                         </div>
                         <div class="content">
                             <p>Hi, <strong>%s</strong>,</p>
-                            <p>We received a request to reset your password. Use the OTP code below to reset it:</p>
+                            <p>We received a request to reset your password. Your verification code to reset your password is:</p>
                             <div class="otp-code">%s</div>
-                            <p>If you didn’t request a password reset, you can safely ignore this email.</p>
+                            <p>This code is valid for the next 5 minutes. If you didn’t request a password reset, you can safely ignore this email.</p>
                         </div>
                         <div class="footer">
                             <p>&copy; TheHunt | All Rights Reserved</p>

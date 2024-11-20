@@ -1,4 +1,4 @@
-import { Button, Checkbox, Textarea } from "@mantine/core";
+import { Button, Checkbox, TextInput } from "@mantine/core";
 import fields from "../../Data/Profile";
 import SelectInput from "./SelectInput";
 import { useEffect } from "react";
@@ -8,11 +8,14 @@ import { isNotEmpty, useForm } from "@mantine/form";
 import { changeProfile } from "../../Slices/ProfileSlice";
 import { successNotification } from "../../Services/NotificationService";
 
-const ExpInput = (props: any) => {
+const EduInput = (props: any) => {
 
 	const select = fields;
 
 	const profile = useSelector((state: any) => state.profile);
+
+	console.log('profile from redux', profile);
+	
 
 	const dispatch = useDispatch();
 
@@ -20,13 +23,12 @@ const ExpInput = (props: any) => {
 
 		if (!props.add) form.setValues({
 
-			title: props.title,
-			company: props.company,
+			course: props.course,
+			institution: props.institution,
 			location: props.location,
-			description: props.description,
 			startDate: new Date(props.startDate),
 			endDate: new Date(props.endDate),
-			working: props.working
+			currentlyStudying: props.currentlyStudying
 		})
 	}, [])
 
@@ -35,21 +37,19 @@ const ExpInput = (props: any) => {
 		validateInputOnChange: true,
 		initialValues: {
 
-			title: '',
-			company: '',
+			course: '',
+			institution: '',
 			location: '',
-			description: '',
 			startDate: new Date,
 			endDate: new Date,
-			working: false
+			currentlyStudying: false
 		},
 
 		validate: {
 
-			title: isNotEmpty("Title is required"),
-			company: isNotEmpty("Company is required"),
+			course: isNotEmpty("Course is required"),
+			institution: isNotEmpty("Institution is required"),
 			location: isNotEmpty("Location is required"),
-			description: isNotEmpty("Description is required"),
 		}
 	});
 
@@ -59,55 +59,68 @@ const ExpInput = (props: any) => {
 
 		if (!form.isValid()) return;
 
-		let exp = [...profile.experiences];
+		let edu = [...(profile.educations || [])];	
+		
 
 		if (props.add) {
-			
-			exp.push(form.getValues());
 
-			exp[exp.length - 1].startDate = exp[exp.length - 1].startDate.toISOString();
-			exp[exp.length - 1].endDate = exp[exp.length - 1].endDate.toISOString();
+			edu.push(form.getValues());
+
+			edu[edu.length - 1].startDate = edu[edu.length - 1].startDate.toISOString();
+			edu[edu.length - 1].endDate = edu[edu.length - 1].endDate.toISOString();
 		}
 		else {
-			
-			exp[props.index] = form.getValues();
 
-			exp[props.index].startDate = exp[props.index].startDate.toISOString();
-			exp[props.index].endDate = exp[props.index].endDate.toISOString();
+			edu[props.index] = form.getValues();
+
+			edu[props.index].startDate = edu[props.index].startDate.toISOString();
+			edu[props.index].endDate = edu[props.index].endDate.toISOString();
 		}
 
-		let updatedProfile = {...profile, experiences:exp};
+		let updatedProfile = { ...profile, educations: edu || [] };
 
 		props.setEdit(false);
 
 		dispatch(changeProfile(updatedProfile));
 
-		successNotification("Success", `Experience ${props.add ? "Added" : "Updated"} Successfully`);
+		successNotification("Success", `Education ${props.add ? "Added" : "Updated"} Successfully`);
 
 		console.log(updatedProfile);
-		
+
 	}
 
 	return (
 
 		<div className="flex flex-col gap-3">
-			<div className="text-lg font-semibold" >{props.add ? "Add " : "Edit "} Experience</div>
+			<div className="text-lg font-semibold" >{props.add ? "Add " : "Edit "} Education</div>
 			<div className="flex flex-col gap-5 [&_input]:!placeholder-congress-blue-500 [&_input]:!border-congress-blue-900">
 
 				<div className="flex gap-10 [&>*]:w-1/2 ">
 
-					<SelectInput form={form} name="title" {...select[0]} />
-					<SelectInput form={form} name="company" {...select[1]} />
+					<TextInput {...form.getInputProps("course")} withAsterisk className="[&_input]:bg-congress-blue-950 "
+
+						label="Course"
+						placeholder="Course Name"
+					/>
+
+					<TextInput {...form.getInputProps("institution")} withAsterisk className="[&_input]:bg-congress-blue-950 "
+
+						label="Institution"
+						placeholder="Institution Name"
+					/>
+
+					{/* <SelectInput form={form} name="title" {...select[0]} /> */}
+					{/* <SelectInput form={form} name="company" {...select[1]} /> */}
 
 				</div>
 
 				<SelectInput form={form} name="location" {...select[2]} />
 
-				<Textarea {...form.getInputProps('description')} withAsterisk autosize minRows={2}
+				{/* <Textarea {...form.getInputProps('description')} withAsterisk autosize minRows={2}
 					className="[&_textarea]:bg-congress-blue-900 [&_textarea]:border-congress-blue-700 [&_textarea]:placeholder-congress-blue-300"
 					label="Summary"
 					placeholder="Job Summary..."
-				/>
+				/> */}
 
 				<div className="flex gap-10 [&>*]:w-1/2 ">
 					<MonthPickerInput
@@ -125,7 +138,7 @@ const ExpInput = (props: any) => {
 
 						{...form.getInputProps("endDate")}
 
-						disabled={form.getValues().working}
+						disabled={form.getValues().currentlyStudying}
 						withAsterisk
 						minDate={form.getValues().startDate || undefined}
 						maxDate={new Date()}
@@ -138,12 +151,12 @@ const ExpInput = (props: any) => {
 
 				<Checkbox autoContrast className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800"
 
-					{...form.getInputProps("working")}
+					{...form.getInputProps("currentlyStudying")}
 
-					checked={form.getValues().working}
-					onChange={(event) => form.setFieldValue("working", event.currentTarget.checked)}
+					checked={form.getValues().currentlyStudying}
+					onChange={(event) => form.setFieldValue("currentlyStudying", event.currentTarget.checked)}
 
-					label="Currently working here"
+					label="Currently Studying"
 				/>
 
 				<div className="flex gap-5">
@@ -156,4 +169,4 @@ const ExpInput = (props: any) => {
 	)
 }
 
-export default ExpInput;
+export default EduInput;

@@ -93,7 +93,7 @@ const SignUp = () => {
 					setLoading(false);
 
 					navigate("/login");
-					
+
 				}, 2800);
 
 			}).catch((err) => {
@@ -115,79 +115,83 @@ const SignUp = () => {
 
 		<div className="w-1/2 px-20 flex flex-col justify-center gap-3">
 
-			<div className="text-2xl font-semibold">Create Account</div>
+			<div className="w-4/5 px-20 flex flex-col justify-center gap-3">
 
-			<TextInput
-				name="name"
-				error={formError.name}
-				value={data.name}
-				onChange={handleChange}
-				withAsterisk className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-400"
-				label="Full Name"
-				placeholder="Your Name"
-			/>
+				<div className="text-2xl font-semibold">Create Account</div>
 
-			<TextInput
-				name="email"
-				error={formError.email}
-				value={data.email}
-				onChange={handleChange}
-				withAsterisk className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-400"
+				<TextInput
+					name="name"
+					error={formError.name}
+					value={data.name}
+					onChange={handleChange}
+					withAsterisk className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-400 "
+					label="Full Name"
+					placeholder="Your Name"
+				/>
 
-				leftSection={<IoAt className="w-5 h-5 text-congress-blue-200" />}
-				label="Email"
-				placeholder="Your Email"
-			/>
 
-			<PasswordInput
-				name="password"
-				error={formError.password}
-				value={data.password}
-				onChange={handleChange}
-				className=" [&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-400"
-				label="Password"
-				leftSection={<IoMdLock className="w-5 h-5 text-congress-blue-200" />}
-				withAsterisk
-				placeholder="Password"
-			/>
+				<TextInput
+					name="email"
+					error={formError.email}
+					value={data.email}
+					onChange={handleChange}
+					withAsterisk className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-400"
 
-			<PasswordInput
-				name="confirmPassword"
-				error={formError.confirmPassword}
-				value={data.confirmPassword} onChange={handleChange} className=" [&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-400"
-				label="Confirm Password"
-				leftSection={<IoMdLock className="w-5 h-5 text-congress-blue-200" />}
-				withAsterisk
-				placeholder="Confirm Password"
-			/>
+					leftSection={<IoAt className="w-5 h-5 text-congress-blue-200" />}
+					label="Email"
+					placeholder="Your Email"
+				/>
 
-			<Radio.Group className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 my-3"
-				value={data.accountType}
-				onChange={handleChange}
-				label="Looking for?"
-				withAsterisk
-			>
+				<PasswordInput
+					name="password"
+					error={formError.password}
+					value={data.password}
+					onChange={handleChange}
+					className=" [&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-400"
+					label="Password"
+					leftSection={<IoMdLock className="w-5 h-5 text-congress-blue-200" />}
+					withAsterisk
+					placeholder="Password"
+				/>
 
-				<Group mt="xs">
-					<Radio
-						className="py-4 px-6 border border-congress-blue-800 rounded-lg has-[:checked]:border-bright-sun-400 has-[:checked]:bg-bright-sun-400/5 hover:bg-congress-blue-900/50"
-						value="APPLICANT" label="Jobs" />
-					<Radio
-						className="py-4 px-6 border border-congress-blue-800 rounded-lg has-[:checked]:border-bright-sun-400 has-[:checked]:bg-bright-sun-400/5 hover:bg-congress-blue-900/50"
-						value="EMPLOYER" label="Talents" />
-				</Group>
+				<PasswordInput
+					name="confirmPassword"
+					error={formError.confirmPassword}
+					value={data.confirmPassword} onChange={handleChange} className=" [&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-400"
+					label="Confirm Password"
+					leftSection={<IoMdLock className="w-5 h-5 text-congress-blue-200" />}
+					withAsterisk
+					placeholder="Confirm Password"
+				/>
 
-			</Radio.Group>
+				<Radio.Group className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 my-3"
+					value={data.accountType}
+					onChange={handleChange}
+					label="Looking for?"
+					withAsterisk
+				>
 
-			{/* <Checkbox autoContrast className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800"
+					<Group mt="xs">
+						<Radio
+							className="py-4 px-6 border border-congress-blue-800 rounded-lg has-[:checked]:border-bright-sun-400 has-[:checked]:bg-bright-sun-400/5 hover:bg-congress-blue-900/50"
+							value="APPLICANT" label="Jobs" />
+						<Radio
+							className="py-4 px-6 border border-congress-blue-800 rounded-lg has-[:checked]:border-bright-sun-400 has-[:checked]:bg-bright-sun-400/5 hover:bg-congress-blue-900/50"
+							value="EMPLOYER" label="Talents" />
+					</Group>
+
+				</Radio.Group>
+
+				{/* <Checkbox autoContrast className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800"
 
 				label={<>I accept {' '} <Anchor>terms & conditions.</Anchor> </>}
 			/> */}
 
-			<Button loading={loading} onClick={handleSubmit} autoContrast variant="filled">Sign Up</Button>
+				<Button loading={loading} onClick={handleSubmit} autoContrast variant="filled">Sign Up</Button>
 
-			<div className="mx-auto">Have an account? <span onClick={() => {navigate("/login"); setFormError(form); setData(form)}} className="text-bright-sun-400 hover:underline cursor-pointer">Login.</span></div>
+				<div className="mx-auto">Have an account? <span onClick={() => { navigate("/login"); setFormError(form); setData(form) }} className="text-bright-sun-400 hover:underline cursor-pointer">Login.</span></div>
 
+			</div>
 
 		</div>
 	)

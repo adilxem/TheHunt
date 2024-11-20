@@ -38,7 +38,7 @@ function App() {
 
 					<Notifications
 						className='[&>div>div]:bg-congress-blue-900 [&_div]:rounded-lg'
-						position="top-right" zIndex={1000} />
+						position="top-center" zIndex={1000} />
 
 					<AppRoutes/>
 
@@ -51,4 +51,4 @@ function App() {
 	)
 }
 
-export default App
+export default App;

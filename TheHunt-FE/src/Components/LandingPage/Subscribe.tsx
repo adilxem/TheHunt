@@ -1,6 +1,9 @@
 import { Button, TextInput } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 
 const Subscribe = () => {
+
+	const navigate = useNavigate();
 
     return (
 
@@ -15,7 +18,7 @@ const Subscribe = () => {
                 placeholder="your@email.com"
                 size="xl"
             />
-            <Button className="!rounded-lg text-congress-blue-700" size="lg" color="bright-sun.4" variant="filled">Sign Up</Button>
+            <Button onClick={()=> navigate("/sign-up")} className="!rounded-lg text-congress-blue-700" size="lg" color="bright-sun.4" variant="filled">Sign Up</Button>
             </div>
         </div>
     )

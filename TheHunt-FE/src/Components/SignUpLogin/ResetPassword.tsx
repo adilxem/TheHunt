@@ -125,7 +125,7 @@ const ResetPassword = (props: any) => {
 				label="Email"
 				placeholder="Your Email"
 
-				rightSection={<Button loading={otpSending && !otpSent} size="xs" className="mr-1" onClick={handleSendOTP} autoContrast disabled={email === "" || otpSent} variant="filled">Send OTP</Button>}
+				rightSection={<Button loading={otpSending && !otpSent} size="xs" className="mr-1" onClick={handleSendOTP} autoContrast disabled={email === "" || otpSent} variant="filled">Send Code</Button>}
 				rightSectionWidth="xl"
 			/>
 			{
@@ -137,9 +137,9 @@ const ResetPassword = (props: any) => {
 
 				<div className="flex gap-2">
 
-					<Button fullWidth color="bright-sun.4" loading={otpSending} onClick={resendOTP} autoContrast variant="light">{resendLoader ? seconds : "Resend"}</Button>
+					<Button fullWidth color="bright-sun.4" loading={otpSending} onClick={resendOTP} autoContrast variant="light">{resendLoader ? `Resend Code (${seconds})` : "Resend"}</Button>
 
-					<Button fullWidth onClick={changeEmail} autoContrast variant="filled">Change Email</Button>
+					<Button fullWidth onClick={changeEmail} autoContrast variant="filled">Not Your Email?</Button>
 				</div>
 			}
 

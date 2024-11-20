@@ -40,6 +40,7 @@ const SelectInput = (props:any) => {
 					setValue(search);
 
 					props.form.setFieldValue(props.name, search);
+					
 				} else {
 					setValue(val);
 					setSearch(val);

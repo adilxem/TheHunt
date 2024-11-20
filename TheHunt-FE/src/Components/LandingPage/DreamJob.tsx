@@ -1,5 +1,6 @@
 import { Avatar, TextInput } from "@mantine/core";
 import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const DreamJob = () => {
 
@@ -34,10 +35,10 @@ const DreamJob = () => {
                         placeholder="Fulltime"
                     />
 
-                    <div className="flex items-center justify-center h-full w-20 p-2 rounded-lg bg-bright-sun-400 text-congress-blue-600 hover:bg-bright-sun-500 cursor-pointer">
+                    <Link to="/find-jobs" className="flex items-center justify-center h-full w-20 p-2 rounded-lg bg-bright-sun-400 text-congress-blue-600 hover:bg-bright-sun-500 cursor-pointer">
 
                         <FaSearch className="h-[85%] w-[85%]"/>
-                    </div>
+                    </Link>
 
                 </div>
             </div>

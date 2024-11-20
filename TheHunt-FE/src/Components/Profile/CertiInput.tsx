@@ -2,13 +2,63 @@ import { Button, TextInput } from "@mantine/core";
 import SelectInput from "./SelectInput";
 import fields from "../../Data/Profile";
 import { MonthPickerInput } from "@mantine/dates";
-import { useState } from "react";
+import { isNotEmpty, useForm } from "@mantine/form";
+import { useDispatch, useSelector } from "react-redux";
+import { changeProfile } from "../../Slices/ProfileSlice";
+import { successNotification } from "../../Services/NotificationService";
 
 const CertiInput = (props: any) => {
 
 	const select = fields;
 
-	const [issueDate, setIssueDate] = useState<Date | null>(new Date());
+	const dispatch = useDispatch();
+
+	// const [issueDate, setIssueDate] = useState<Date | null>(new Date());
+
+	const profile = useSelector((state: any) => state.profile);
+
+	const form = useForm({
+		mode: 'controlled',
+		validateInputOnChange: true,
+		initialValues: {
+
+			name: '',
+			issuer: '',
+			issueDate: new Date,
+			certificateId: ''
+		},
+
+		validate: {
+
+			name: isNotEmpty("Name is required"),
+			issuer: isNotEmpty("Issuer is required"),
+			issueDate: isNotEmpty("Issue Date is required"),
+			certificateId: isNotEmpty("Certificate ID is required")
+		}
+	});
+
+	const handleSave = () => {
+
+		form.validate();
+
+		if (!form.isValid()) return;
+
+		let certi = [...profile.certifications];
+
+		certi.push(form.getValues());
+
+		certi[certi.length - 1].issueDate = certi[certi.length - 1].issueDate.toISOString();
+
+		let updatedProfile = {...profile, certifications:certi};
+
+		props.setEdit(false);
+
+		dispatch(changeProfile(updatedProfile));
+
+		successNotification("Success", "Certificate Added Successfully");
+		console.log(updatedProfile);
+
+	}
 
 	return (
 
@@ -20,7 +70,7 @@ const CertiInput = (props: any) => {
 
 				<div className="flex gap-10 [&>*]:w-1/2 ">
 
-					<TextInput withAsterisk className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-200"
+					<TextInput {...form.getInputProps("name")} withAsterisk className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-200"
 
 						label="Title"
 						placeholder="Certificate Title"
@@ -28,7 +78,7 @@ const CertiInput = (props: any) => {
 
 					<div className=" [&_input]:!placeholder-congress-blue-800 [&_input]:!border-congress-blue-900">
 
-						<SelectInput {...select[1]} />
+						<SelectInput form={form} name="issuer" {...select[1]} />
 
 					</div>
 
@@ -37,16 +87,19 @@ const CertiInput = (props: any) => {
 				<div className="flex gap-10 [&>*]:w-1/2 ">
 
 					<MonthPickerInput
+
+						{...form.getInputProps("issueDate")}
+
 						withAsterisk
 						maxDate={new Date()}
 						className="[&_button]:bg-congress-blue-900  [&_button]:border-congress-blue-700"
 						label="Issue date"
 						placeholder="Pick date"
-						value={issueDate}
-						onChange={setIssueDate}
+						// value={issueDate}
+						// onChange={setIssueDate}
 					/>
 
-					<TextInput withAsterisk className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-200"
+					<TextInput {...form.getInputProps("certificateId")} withAsterisk className="[&_input]:bg-congress-blue-900 [&_input]:border-congress-blue-800 [&_input]:placeholder-congress-blue-200"
 
 						label="Certificate ID"
 						placeholder="Certificate ID"
@@ -55,7 +108,7 @@ const CertiInput = (props: any) => {
 				</div>
 
 				<div className="flex gap-5">
-					<Button onClick={() => props.setEdit(false)} color="bright-sun.4" variant="outline" >Save</Button>
+					<Button onClick={handleSave} color="green.8" variant="light" >Save</Button>
 					<Button onClick={() => props.setEdit(false)} color="red.8" variant="light" >Cancel</Button>
 
 				</div>

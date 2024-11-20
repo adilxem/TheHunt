@@ -2,9 +2,18 @@ import { FaMapMarkerAlt, FaSearch } from "react-icons/fa";
 import { TbRecharging } from "react-icons/tb";
 
 const searchFields=[
-    { title: "Job Title", icon: FaSearch, options: ['Designer', 'Developer', 'Product Manager', 'Marketing Specialist', 'Data Analyst', 'Sales Executive', 'Content Writer', 'Customer Support'] },
+    // { title: "Job Title", icon: FaSearch, options: ['Designer', 'Developer', 'Product Manager', 'Marketing Specialist', 'Data Analyst', 'Sales Executive', 'Content Writer', 'Customer Support'] },
     { title: "Location", icon: FaMapMarkerAlt, options: ['Delhi', 'New York', 'San Francisco', 'London', 'Berlin', 'Tokyo', 'Sydney', 'Toronto'] },
-    { title: "Skills", icon: TbRecharging, options: ["HTML","CSS","JavaScript","React","Angular","Node.js","Python","Java","Ruby","PHP","SQL","MongoDB","PostgreSQL","Git","API Development","Testing and Debugging","Agile Methodologies","DevOps","AWS","Azure","Google Cloud"] },
+    { title: "Skills", icon: TbRecharging, options: ["HTML","CSS","JavaScript","React","Angular","Node.js","Python","Java","Ruby","PHP","SQL","MongoDB","PostgreSQL","Git","API Development","Testing and Debugging","Agile Methodologies","DevOps","AWS","Azure","Google Cloud", "Communication",
+    "Teamwork",
+    "Problem-Solving",
+    "Time Management",
+    "Critical Thinking",
+    "Adaptability",
+    "Creativity",
+    "Leadership",
+    "Organizational Skills",
+    "Attention to Detail"] },
 ]
 const talents = [
     {

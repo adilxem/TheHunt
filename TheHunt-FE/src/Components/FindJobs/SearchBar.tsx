@@ -1,31 +1,33 @@
-import { Divider, RangeSlider } from "@mantine/core";
+import { Divider } from "@mantine/core";
 import { dropdownData } from "../../Data/JobsData";
 import MultiInput from "./MultiInput";
-import { useState } from "react";
+// import { useState } from "react";
 
 const SearchBar = () => {
 
-    const [value, setValue] = useState<[number, number]>([3, 99]);        
+	// const [value, setValue] = useState<[number, number]>([3, 99]);        
 
-  return (
+	return (
 
-    <div className="flex px-5 py-8 [&_dropdown]:!border-red-500">
+		<div className="flex justify-between px-5 py-8 [&_dropdown]:!border-red-500">
 
-        {
-            dropdownData.map((item, index) => <>
+			<Divider mr="xs" size="xs" orientation="vertical" color="congress-blue.9" />
 
-                <div key={index} className="w-1/5 [&_input]:!placeholder-congress-blue-400 [&_input]:!border-congress-blue-700">
-                    
-                    <MultiInput {...item}/>
+			{
+				dropdownData.map((item, index) => <>
 
-                </div>
+					<div key={index} className="w-1/5 [&_input]:!placeholder-congress-blue-400 [&_input]:!border-congress-blue-700">
 
-                <Divider mr="xs" size="xs" orientation="vertical" color="congress-blue.9"/>
+						<MultiInput {...item} />
 
-            </> )
-        }
+					</div>
 
-        <div className="w-1/5 [&_.mantine-Slider-label]:!translate-y-11">
+					<Divider mr="xs" size="xs" orientation="vertical" color="congress-blue.9" />
+
+				</>)
+			}
+
+			{/* <div className="w-1/5 [&_.mantine-Slider-label]:!translate-y-11">
 
             <div className="flex justify-between text-sm">
 
@@ -39,10 +41,10 @@ const SearchBar = () => {
                 duration: 150,
                 timingFunction: 'linear',
                 }} onChange={setValue} />
-        </div>
+        </div> */}
 
-    </div>
-  )
+		</div>
+	)
 }
 
 export default SearchBar;

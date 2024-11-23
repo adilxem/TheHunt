@@ -37,8 +37,6 @@ const ProfileMenu = () => {
 	return (
 		<div>
 
-
-
 			<Menu shadow="md" width={200} opened={opened} onChange={setOpened}>
 				<Menu.Target>
 					<div className="flex gap-2 items-center justify-center cursor-pointer">

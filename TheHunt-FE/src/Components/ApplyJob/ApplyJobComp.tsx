@@ -1,11 +1,11 @@
 import { Divider } from "@mantine/core";
 import ApplicationForm from "./ApplicationForm";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { timeAgo } from "../../Services/Utilities";
 
 const ApplyJobComp = (props : any) => {
 
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
 	return <> <div className="w-2/3 mx-auto">
 

@@ -105,6 +105,14 @@ const JobDesc = (props: any) => {
 					{(props.edit || !applied) && <Link to={props.edit ? `/post-job/${props.id}` : `/apply-job/${props.id}`}>
 
 						<Button color="bright-sun.4" size="sm" variant="light" >{props.closed ? "Reopen" : props.edit ? "Edit" : "Apply"} </Button>
+
+						{/* {!props.closed && (
+							<Button color="bright-sun.4" size="sm" variant="light">
+								{props.edit ? "Edit" : "Apply"}
+							</Button>
+						)} */}
+
+
 					</Link>}
 
 					{
@@ -112,7 +120,29 @@ const JobDesc = (props: any) => {
 						// applied && <Button color="green.8" size="sm" variant="light" > Applied </Button>
 					}
 
-					{props.edit && !props.closed ? <Button onClick={handleClose} color="red.4" size="sm" variant="light">Close</Button> : profile.savedJobs?.includes(props.id) ? <BsBookmarkFill onClick={handleSaveJob} className="h-5 w-5 cursor-pointer text-bright-sun-400" /> : <BsBookmark onClick={handleSaveJob} className="h-5 w-5 text-congress-blue-300 cursor-pointer hover:text-bright-sun-400" />}
+					{/* {props.edit && !props.closed ? <Button onClick={handleClose} color="red.4" size="sm" variant="light">Close</Button> : profile.savedJobs?.includes(props.id) ? <BsBookmarkFill onClick={handleSaveJob} className="h-5 w-5 cursor-pointer text-bright-sun-400" /> : <BsBookmark onClick={handleSaveJob} className="h-5 w-5 text-congress-blue-300 cursor-pointer hover:text-bright-sun-400" />} */}
+
+					{props.edit && !props.closed ? (
+						<Button onClick={handleClose} color="red.4" size="sm" variant="light">
+							Close
+						</Button>
+					) :
+						!props.closed && (
+							profile.savedJobs?.includes(props.id) ? (
+								<BsBookmarkFill
+									onClick={handleSaveJob}
+									className="h-5 w-5 cursor-pointer text-bright-sun-400"
+								/>
+							) : (
+								<BsBookmark
+									onClick={handleSaveJob}
+									className="h-5 w-5 text-congress-blue-300 cursor-pointer hover:text-bright-sun-400"
+								/>
+							)
+						)
+					}
+
+
 
 				</div>
 

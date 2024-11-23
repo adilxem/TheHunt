@@ -12,13 +12,15 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service("jobService")
 public class JobServiceImpl implements JobService{
 
     @Autowired
     private JobRepository jobRepository;
+
+    @Autowired
+    private NotificationService notificationService;
 
 
     @Override
@@ -29,6 +31,23 @@ public class JobServiceImpl implements JobService{
             jobDTO.setId(Utilities.getNextSequence("jobs"));
 
             jobDTO.setPostTime(LocalDateTime.now());
+
+            NotificationDTO notiDTO = new NotificationDTO();
+
+            notiDTO.setAction("New Job Posted");
+
+            notiDTO.setMessage("You listed a new opening for " + jobDTO.getJobTitle());
+
+            notiDTO.setUserId(jobDTO.getPostedBy());
+
+            notiDTO.setRoute("/posted-job/" + jobDTO.getId());
+
+            try {
+                notificationService.sendNotification(notiDTO);
+            } catch (TheHuntException e) {
+                throw new RuntimeException(e);
+            }
+
         }
 
         else {
@@ -99,6 +118,22 @@ public class JobServiceImpl implements JobService{
                 if (application.getApplicationStatus().equals(ApplicationStatus.INTERVIEWING)) {
 
                     x.setInterviewTime(application.getInterviewTime());
+
+                    NotificationDTO notiDTO = new NotificationDTO();
+
+                    notiDTO.setAction("Interview Schedule");
+
+                    notiDTO.setMessage("You got a new interview scheduled");
+
+                    notiDTO.setUserId(application.getApplicantId());
+
+                    notiDTO.setRoute("/job-history");
+
+                    try {
+                        notificationService.sendNotification(notiDTO);
+                    } catch (TheHuntException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
 

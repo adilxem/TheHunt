@@ -3,17 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Info from "./Info";
 import { changeProfile } from "../../Slices/ProfileSlice";
 import About from "./About";
-import Skills from "./Skills";
-import Experience from "./Experience";
-import Certificate from "./Certificate";
 import { useHover } from "@mantine/hooks";
 import { TbPencil } from "react-icons/tb";
 import { successNotification } from "../../Services/NotificationService";
 import imageCompression from 'browser-image-compression';
 import { getBase64 } from "../../Services/Utilities";
-import Education from "./Education";
 
-const Profile = () => {
+const CProfile = () => {
 
 	const dispatch = useDispatch();
 
@@ -54,15 +50,6 @@ const Profile = () => {
 
 				<div ref={ref} className="flex items-center justify-center absolute -bottom-1/4 mb-4 left-5">
 
-					{/* <Avatar className="!h-48 !w-48 border-congress-blue-950 border-8 rounded-full" src={profile.picture ? `data : image/jpeg; base64, ${profile.picture}` : "/Avatars/avatar1.png"} alt="user" /> */}
-
-					{/* <Avatar
-						className="!h-48 !w-48 border-congress-blue-950 border-8 rounded-full"
-						src={profile.picture ? `data:image/jpeg;base64,${profile.picture}` : "/Avatars/avatar1.png"}
-						alt="user"
-						onError={(e) => e.target.src = "/Avatars/avatar1.png"}
-					/> */}
-
 					<Avatar
 						className="!h-48 !w-48 border-congress-blue-950 border-8 rounded-full"
 						src={profile.picture ? `data:image/jpeg;base64,${profile.picture}` : "/Avatars/avatar1.png"}
@@ -102,25 +89,9 @@ const Profile = () => {
 
 			<About />
 
-			<Divider my="xl" mx="xs" color="congress-blue.7" />
-
-			<Skills />
-
-			<Divider my="xl" mx="xs" color="congress-blue.7" />
-
-			<Education />
-
-			<Divider my="xl" mx="xs" color="congress-blue.7" />
-
-			<Experience />
-
-			<Divider my="xl" mx="xs" color="congress-blue.7" />
-
-			<Certificate />
-
 		</div>
 
 	)
 }
 
-export default Profile;
+export default CProfile;

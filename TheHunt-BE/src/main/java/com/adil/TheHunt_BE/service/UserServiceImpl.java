@@ -1,6 +1,7 @@
 package com.adil.TheHunt_BE.service;
 
 import com.adil.TheHunt_BE.dto.LoginDTO;
+import com.adil.TheHunt_BE.dto.NotificationDTO;
 import com.adil.TheHunt_BE.dto.ResponseDTO;
 import com.adil.TheHunt_BE.dto.UserDTO;
 import com.adil.TheHunt_BE.entity.OTP;
@@ -39,6 +40,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private ProfileService profileService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     @Override
     public UserDTO registerUser(UserDTO userDTO) throws TheHuntException {
@@ -111,6 +115,16 @@ public class UserServiceImpl implements UserService{
         user.setPassword(passwordEncoder.encode(loginDTO.getPassword()));
 
         userRepository.save(user);
+
+        NotificationDTO notificationDTO = new NotificationDTO();
+
+        notificationDTO.setUserId(user.getId());
+
+        notificationDTO.setMessage("Password Reset Successfully");
+
+        notificationDTO.setAction("Password Reset");
+
+        notificationService.sendNotification(notificationDTO);
 
         return new ResponseDTO("Password changed successfully");
     }

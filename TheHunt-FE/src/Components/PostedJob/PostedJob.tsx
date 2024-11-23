@@ -41,7 +41,7 @@ const PostedJob = (props: any) => {
 
 				{/* <Tabs.Panel value="ACTIVE">
                         
-                    </Tabs.Panel>
+                    </Tabzs.Panel>
 
                     <Tabs.Panel value="DRAFT">
 					<div className="flex flex-col gap-5 mt-5">

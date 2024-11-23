@@ -1,10 +1,10 @@
 import { useState } from "react";
-import fields from "../../Data/Profile";
+// import fields from "../../Data/Profile";
 import { ActionIcon, TextInput } from "@mantine/core";
 import { FaBriefcase } from "react-icons/fa";
 import { FiMapPin } from "react-icons/fi";
 import { TbPencil } from "react-icons/tb";
-import SelectInput from "./SelectInput";
+// import SelectInput from "./SelectInput";
 import { useForm } from '@mantine/form';
 import { useDispatch, useSelector } from "react-redux";
 import { changeProfile } from "../../Slices/ProfileSlice";
@@ -14,7 +14,7 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 
 const Info = () => {
 
-	const select = fields;
+	// const select = fields;
 
 	const dispatch = useDispatch();
 
@@ -97,7 +97,7 @@ const Info = () => {
 
 				</div>
 
-				<SelectInput form={form} name="location" {...select[2]} />
+				{/* <SelectInput form={form} name="location" {...select[2]} /> */}
 
 			</div> : <><div className="text-xl flex gap-3 items-center">
 				<FaBriefcase className="h-4 w-4 text-congress-blue-400" />

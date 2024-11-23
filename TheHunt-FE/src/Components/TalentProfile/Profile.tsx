@@ -49,7 +49,7 @@ const Profile = (props:any) => {
 
 			<div className="px-3 py-3 mt-16 ">
 
-				<div className="text-3xl font-semibold flex justify-between text-congress-blue-50">{profile?.name}
+				<div className="text-3xl font-semibold flex justify-between text-congress-blue-50 mb-2">{profile?.name}
 					<Button color="bright-sun.4" variant="light" >Message</Button>
 				</div>
 

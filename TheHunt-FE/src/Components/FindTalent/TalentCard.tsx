@@ -108,7 +108,7 @@ const TalentCard = (props: any) => {
 
 					</div>
 				</div>
-				<FaRegHeart className="text-congress-blue-300 cursor-pointer" />
+				{/* <FaRegHeart className="text-congress-blue-300 cursor-pointer" /> */}
 
 			</div >
 

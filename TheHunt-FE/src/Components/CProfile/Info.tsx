@@ -1,20 +1,19 @@
 import { useState } from "react";
-// import fields from "../../Data/Profile";
-import { ActionIcon, TextInput } from "@mantine/core";
-import { FaBriefcase } from "react-icons/fa";
+import fields from "../../Data/Profile";
+import { ActionIcon } from "@mantine/core";
 import { FiMapPin } from "react-icons/fi";
 import { TbPencil } from "react-icons/tb";
-// import SelectInput from "./SelectInput";
 import { useForm } from '@mantine/form';
 import { useDispatch, useSelector } from "react-redux";
 import { changeProfile } from "../../Slices/ProfileSlice";
 import { successNotification } from "../../Services/NotificationService";
 import { RxCross2 } from "react-icons/rx";
 import { IoCheckmarkSharp } from "react-icons/io5";
+import SelectInput from "../Profile/SelectInput";
 
 const Info = () => {
 
-	// const select = fields;
+	const select = fields;
 
 	const dispatch = useDispatch();
 
@@ -56,8 +55,11 @@ const Info = () => {
 
 	return <>
 
-		<div className="text-3xl font-semibold flex justify-between text-congress-blue-50 mb-2">
-			{user.name}
+		<div className="text-3xl font-semibold flex justify-between text-congress-blue-50">
+
+			{/* {user.name} */}
+
+			Goods Bakery
 
 			<div>
 
@@ -79,7 +81,7 @@ const Info = () => {
 
 				<div className="flex gap-10 [&>*]:w-1/2 ">
 
-					<TextInput {...form.getInputProps("jobTitle")} withAsterisk className="[&_input]:bg-congress-blue-950 "
+					{/* <TextInput {...form.getInputProps("jobTitle")} withAsterisk className="[&_input]:bg-congress-blue-950 "
 
 						label="Course"
 						placeholder="Course Name"
@@ -90,26 +92,30 @@ const Info = () => {
 
 						label="Institution"
 						placeholder="Institution Name"
-					/>
+					/> */}
 
 					{/* <SelectInput form={form} name="course" {...select[0]} /> */}
 					{/* <SelectInput form={form} name="company" {...select[1]} /> */}
 
 				</div>
 
-				{/* <SelectInput form={form} name="location" {...select[2]} /> */}
+				<SelectInput form={form} name="location" {...select[2]} />
 
-			</div> : <><div className="text-xl flex gap-3 items-center">
-				<FaBriefcase className="h-4 w-4 text-congress-blue-400" />
+			</div> : <>
 
-				{profile.jobTitle} &bull; {profile.company}
+				{/* <div className="text-xl flex gap-3 items-center">
+					<FaBriefcase className="h-4 w-4 text-congress-blue-400" />
 
-			</div>
+					{profile.jobTitle} &bull; {profile.company}
+
+				</div> */}
 
 				<div className="flex gap-3 items-center text-lg text-congress-blue-400">
 					<FiMapPin className="h-4 w-4" />
 
-					{profile.location}
+					{/* {profile.location} */}
+
+					Hyderabad
 
 				</div></>
 		}

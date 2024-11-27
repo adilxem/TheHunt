@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { successNotification } from "../../Services/NotificationService";
 import { changeProfile } from "../../Slices/ProfileSlice";
 
-const About = () => {
+const Industries = () => {
 
 	const dispatch = useDispatch();
 
@@ -46,7 +46,7 @@ const About = () => {
 
 		<div className="px-3">
 			<div className="text-2xl font-semibold mb-3 text-congress-blue-100 flex justify-between">
-				Overview
+				Industry
 
 				<div>
 
@@ -62,19 +62,16 @@ const About = () => {
 			</div>
 
 			{
-				edit ? <Textarea autosize minRows={3}
+				edit ? <Textarea autosize minRows={1}
 					className="[&_textarea]:bg-congress-blue-900 [&_textarea]:border-congress-blue-900 [&_textarea]:placeholder-congress-blue-300"
-					placeholder="write an overview about the company..."
+					placeholder="write about the indusrty the company features in..."
 					value={about}
 					onChange={(event) => setAbout(event.currentTarget.value)}
 				/> : <div className="text-sm text-congress-blue-300 text-justify">
 					{/* {profile?.about} */}
-
-					We are a global leader in technology, specializing in internet-related services and products. Our mission is to organize the world’s information and make it universally accessible and useful. Founded by ABC, we have grown into one of the most influential companies in the world, providing innovative tools and services that help billions of people across the globe.
+					Internet, Software & Technology Services
 				</div>
 			}
-
-
 
 
 		</div>
@@ -83,4 +80,4 @@ const About = () => {
 
 }
 
-export default About;
+export default Industries;

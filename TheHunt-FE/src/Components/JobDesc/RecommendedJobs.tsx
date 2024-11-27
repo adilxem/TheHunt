@@ -25,7 +25,7 @@ const RecommendedJobs = () => {
 
 		<div className="">
 
-			<div className="text-xl font-semibold mb-5">Recommended Jobs</div>
+			<div className="text-xl font-semibold mb-5">More Jobs</div>
 
 			<div className="flex flex-col flex-wrap gap-5 justify-between">
 				{

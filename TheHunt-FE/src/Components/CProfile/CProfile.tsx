@@ -8,6 +8,8 @@ import { TbPencil } from "react-icons/tb";
 import { successNotification } from "../../Services/NotificationService";
 import imageCompression from 'browser-image-compression';
 import { getBase64 } from "../../Services/Utilities";
+import Industries from "./Industries";
+import Website from "./Website";
 
 const CProfile = () => {
 
@@ -88,6 +90,14 @@ const CProfile = () => {
 			<Divider size="xs" mx="xs" my="xl" color="congress-blue.7" />
 
 			<About />
+
+			<Divider size="xs" mx="xs" my="xl" color="congress-blue.7" />
+
+			<Industries />
+
+			<Divider size="xs" mx="xs" my="xl" color="congress-blue.7" />
+
+			<Website />
 
 		</div>
 

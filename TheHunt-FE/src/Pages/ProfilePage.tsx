@@ -1,24 +1,3 @@
-// import { Divider } from "@mantine/core";
-// import Profile from "../Components/Profile/Profile";
-// import CProfile from "../Components/CProfile/CProfile";
-
-// const ProfilePage = () => {
-
-// 	return (
-
-// 		<div className="min-h-[90vh] bg-congress-blue-950 font-['poppins']">
-			
-// 			<Divider size="xs" mx="md" mb="xl" color="congress-blue.7" />
-// 			<Profile/>
-// 			<CProfile/>
-			
-// 		</div>
-// 	)
-// }
-
-// export default ProfilePage;
-
-
 import { Divider } from "@mantine/core";
 import Profile from "../Components/Profile/Profile";
 import CProfile from "../Components/CProfile/CProfile";

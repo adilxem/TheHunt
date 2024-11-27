@@ -45,7 +45,19 @@ const Card = (props: any) => {
 				<div className="flex gap-2 items-center">
 
 					<div className="p-2 bg-congress-blue-800 rounded-md">
-						<img className="h-7 " src={`/Icons/${props.company}.png`} alt="" />
+
+						{/* <img className="h-7 " src={`/Icons/${props.company}.png`} alt="" /> */}
+
+						<img
+							className="h-7"
+							src={`/Icons/${props.company}.png`}
+							alt=""
+							onError={(e) => {
+								const target = e.target as HTMLImageElement;
+								target.onerror = null; // Prevents looping in case fallback fails
+								target.src = "/Avatars/suitcase.png";
+							}}
+						/>
 					</div>
 					<div>
 

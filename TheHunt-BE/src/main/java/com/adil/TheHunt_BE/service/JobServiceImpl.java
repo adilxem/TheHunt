@@ -95,6 +95,19 @@ public class JobServiceImpl implements JobService{
 
         job.setApplicants(applicants);
 
+        NotificationDTO notificationDTO = new NotificationDTO();
+        notificationDTO.setAction("New Job Application");
+        notificationDTO.setMessage("An applicant has applied for your job: " + job.getJobTitle());
+        notificationDTO.setUserId(job.getPostedBy());
+        notificationDTO.setRoute("/posted-job/" + job.getId());
+
+        try {
+            notificationService.sendNotification(notificationDTO);
+        } catch (TheHuntException e) {
+            throw new RuntimeException("Failed to notify the employer", e);
+        }
+
+
         jobRepository.save(job);
     }
 

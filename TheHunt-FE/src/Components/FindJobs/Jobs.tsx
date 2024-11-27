@@ -106,7 +106,7 @@ const Jobs = () => {
 			<div className="flex justify-between text-congress-blue-100">
 
 				<div className="font-semibold text-2xl">
-					Recommended Jobs
+					Jobs
 				</div>
 
 				<div>

@@ -69,7 +69,7 @@ const ProfileMenu = () => {
 						</Menu.Item>
 					</Link>
 
-					<Menu.Item className='hover:bg-congress-blue-800' leftSection={<TbMessageCircle style={{ width: rem(14), height: rem(14) }} />}>
+					{/* <Menu.Item className='hover:bg-congress-blue-800' leftSection={<TbMessageCircle style={{ width: rem(14), height: rem(14) }} />}>
 						Messages
 					</Menu.Item>
 					<Menu.Item className='hover:bg-congress-blue-800' leftSection={<PiReadCvLogoBold style={{ width: rem(14), height: rem(14) }} />}>
@@ -86,10 +86,10 @@ const ProfileMenu = () => {
 						}
 					>
 						Dark Mode
-					</Menu.Item>
+					</Menu.Item> */}
 
 					{/* <Menu.Divider /> */}
-					<Divider size="xs" className='m-2' color="congress-blue.7" />
+					{/* <Divider size="xs" className='m-2' color="congress-blue.7" /> */}
 
 					<Menu.Item className='hover:bg-congress-blue-950'
 
